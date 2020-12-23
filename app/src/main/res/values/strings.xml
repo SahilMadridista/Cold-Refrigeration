@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Cold Refrigeration</string>
+    <string name="sign_in">SIGN IN</string>
 
+    <string name="type_email">Email address</string>
+    <string name="type_password">Password</string>
+    <string name="type_name">Name</string>
+    <string name="type_phone">Phone number</string>
+    <string name="show_pass">Show password</string>
+    <string name="no_acc">Do not have an account ?</string>
+    <string name="sign_up">Sign up</string>
 
 </resources>
