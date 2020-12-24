@@ -57,7 +57,7 @@
                 android:layout_marginEnd="5dp"
                 android:background="@color/white"
                 android:drawableStart="@drawable/ic_email"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/dark_grey"
                 android:drawablePadding="10dp"
                 android:textSize="15sp"
                 android:fontFamily="@font/lato_regular"
@@ -65,7 +65,8 @@
                 android:textColorHint="@color/gray"
                 android:inputType="textEmailAddress"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp">
+                android:paddingEnd="10dp"
+                android:textCursorDrawable="@drawable/cursor_et">
 
             </EditText>
 
@@ -79,10 +80,11 @@
                 android:textColorHint="@color/gray"
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="5dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/dark_grey"
                 android:background="@color/white"
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="10dp"
+                android:textCursorDrawable="@drawable/cursor_et"
                 android:fontFamily="@font/lato_regular"
                 android:hint="@string/type_password"
                 android:inputType="textPassword"

@@ -10,6 +10,17 @@
     android:background="@color/colorPrimaryDark">
 
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:theme="@style/btn"
+        android:id="@+id/send"
+        android:layout_centerInParent="true"
+        android:text="Send msg"
+        android:textColor="@color/black"
+        android:textAllCaps="false">
+    </Button>
 
 
 </RelativeLayout>

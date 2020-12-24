@@ -46,7 +46,8 @@
                 android:layout_marginEnd="5dp"
                 android:background="@color/white"
                 android:drawableStart="@drawable/ic_name"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/dark_grey"
+                android:textCursorDrawable="@drawable/cursor_et"
                 android:drawablePadding="10dp"
                 android:textSize="15sp"
                 android:fontFamily="@font/lato_regular"
@@ -80,7 +81,8 @@
                 android:layout_marginEnd="5dp"
                 android:background="@color/white"
                 android:drawableStart="@drawable/ic_phone"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/dark_grey"
+                android:textCursorDrawable="@drawable/cursor_et"
                 android:drawablePadding="10dp"
                 android:textSize="15sp"
                 android:fontFamily="@font/lato_regular"
@@ -128,7 +130,8 @@
                 android:layout_marginEnd="5dp"
                 android:background="@color/white"
                 android:drawableStart="@drawable/ic_email"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/dark_grey"
+                android:textCursorDrawable="@drawable/cursor_et"
                 android:drawablePadding="10dp"
                 android:textSize="15sp"
                 android:fontFamily="@font/lato_regular"
@@ -149,7 +152,8 @@
                 android:textSize="15sp"
                 android:textColorHint="@color/gray"
                 android:layout_marginEnd="5dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/dark_grey"
+                android:textCursorDrawable="@drawable/cursor_et"
                 android:background="@color/white"
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="10dp"
@@ -194,5 +198,41 @@
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/card">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/already_acc"
+            android:id="@+id/textView"
+            android:fontFamily="@font/lato_regular"
+            android:textColor="@color/dark_grey"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="15dp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_in"
+            android:id="@+id/sign_up_text"
+            android:layout_toEndOf="@id/textView"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="17sp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="5dp">
+
+        </TextView>
+
+
+    </RelativeLayout>
 
 </RelativeLayout>

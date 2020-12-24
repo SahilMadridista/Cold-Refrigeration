@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
          @Override
          public void onClick(View view) {
 
+            Toast.makeText(getApplicationContext(),EmailET.getText().toString().trim() +
+                    PasswordET.getText().toString().trim(),Toast.LENGTH_LONG).show();
 
 
          }

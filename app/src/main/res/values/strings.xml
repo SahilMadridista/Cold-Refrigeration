@@ -8,6 +8,9 @@
     <string name="type_phone">Phone number</string>
     <string name="show_pass">Show password</string>
     <string name="no_acc">Do not have an account ?</string>
+    <string name="already_acc">Already have an account ?</string>
     <string name="sign_up">Sign up</string>
+
+    <string name="api_key">Hbw0MmUmaQM-5zxhzlaKDvIkbsqSJddq2YfrQEbHTX</string>
 
 </resources>
