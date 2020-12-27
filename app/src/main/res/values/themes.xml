@@ -15,4 +15,10 @@
         <item name="colorPrimary">@color/white</item>
     </style>
 
+    <style name="pb" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/email_red</item>
+        <item name="colorPrimaryVariant">@color/email_red</item>
+        <item name="colorOnPrimary">@color/email_red</item>
+    </style>
+
 </resources>

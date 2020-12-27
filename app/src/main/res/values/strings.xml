@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Cold Refrigeration</string>
     <string name="sign_in">SIGN IN</string>
 
@@ -10,6 +10,7 @@
     <string name="no_acc">Do not have an account ?</string>
     <string name="already_acc">Already have an account ?</string>
     <string name="sign_up">Sign up</string>
+    <string name="cre" tools:ignore="TypographyEllipsis">Creating account...</string>
 
     <string name="api_key">Hbw0MmUmaQM-5zxhzlaKDvIkbsqSJddq2YfrQEbHTX</string>
 

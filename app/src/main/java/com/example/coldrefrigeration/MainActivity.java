@@ -1,17 +1,35 @@
 package com.example.coldrefrigeration;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.coldrefrigeration.Admin.AdminHomePage;
+import com.example.coldrefrigeration.Consts.SharedPrefConsts;
+import com.example.coldrefrigeration.Worker.WorkerHomePage;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,51 +38,108 @@ public class MainActivity extends AppCompatActivity {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_main);
 
+      SharedPreferences preferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+      final int loginStatus = preferences.getInt("login", SharedPrefConsts.NO_LOGIN);
 
-      Button button = findViewById(R.id.send);
-
-      button.setOnClickListener(new View.OnClickListener() {
+      new Handler().postDelayed(new Runnable() {
          @Override
-         public void onClick(View view) {
+         public void run() {
 
-            try{
+            if(loginStatus == SharedPrefConsts.ADMIN_LOGIN){
 
-               String apiKey = "apikey=" + "Hbw0MmUmaQM-5zxhzlaKDvIkbsqSJddq2YfrQEbHTX";
-               String message = "&message=" + "Hello Sahil. Thank you for choosing our service. Our worker will reach you soon.";
-               String sender = "&sender=" + "TXTLCL";
-               String numbers = "&numbers=" + "7007537972";
+               FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+               FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+               assert firebaseAuth.getCurrentUser() != null;
+               String id = firebaseAuth.getCurrentUser().getUid();
 
-               HttpURLConnection conn = (HttpURLConnection) new URL("https://api.textlocal.in/send/?").openConnection();
-               String data = apiKey + numbers + message + sender;
+               final ArrayList<String> list = new ArrayList<>();
+               firebaseFirestore.collection("Members").whereEqualTo("designation",
+                       "WORKER").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                  @Override
+                  public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-               conn.setDoOutput(true);
-               conn.setRequestMethod("POST");
-               conn.setRequestProperty("Content-Length",Integer.toString(data.length()));
-               conn.getOutputStream().write(data.getBytes(StandardCharsets.UTF_8));
-               final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                     for(DocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())){
+                        list.add(documentSnapshot.getString("name"));
+                     }
 
-               String line;
+                  }
+               });
 
-               while((line = rd.readLine()) != null){
-                  Toast.makeText(getApplicationContext(),"The message is " + line,Toast.LENGTH_LONG).show();
-               }
+               firebaseFirestore.collection("Members").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                  @Override
+                  public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-               rd.close();
+                     assert documentSnapshot != null;
+                     String name = documentSnapshot.getString("name");
+                     String designation = documentSnapshot.getString("designation");
+                     String activation = documentSnapshot.getString("activation");
+                     String phone = documentSnapshot.getString("phone");
+                     String email = documentSnapshot.getString("email");
+
+                     Intent i = new Intent(getApplicationContext(), AdminHomePage.class);
+                     i.putExtra("name",name);
+                     i.putExtra("designation",designation);
+                     i.putExtra("activation",activation);
+                     i.putExtra("email",email);
+                     i.putExtra("phone",phone);
+                     i.putExtra("worker_list",list);
+                     startActivity(i);
+                     finish();
+
+                  }
+               });
+
+            }
+
+            else if(loginStatus == SharedPrefConsts.WORKER_LOGIN){
+
+               FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+               FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+               assert firebaseAuth.getCurrentUser() != null;
+               String id = firebaseAuth.getCurrentUser().getUid();
+               firebaseFirestore.collection("Members").document(id)
+                       .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                  @Override
+                  public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                     assert documentSnapshot != null;
+                     String name = documentSnapshot.getString("name");
+                     String designation = documentSnapshot.getString("designation");
+                     String activation = documentSnapshot.getString("activation");
+                     String phone = documentSnapshot.getString("phone");
+                     String email = documentSnapshot.getString("email");
+
+                     Intent i = new Intent(getApplicationContext(), WorkerHomePage.class);
+                     i.putExtra("name",name);
+                     i.putExtra("designation",designation);
+                     i.putExtra("activation",activation);
+                     i.putExtra("email",email);
+                     i.putExtra("phone",phone);
+                     startActivity(i);
+                     finish();
+
+                  }
+               });
+
+            }
 
 
-            } catch (Exception e){
+            else {
 
+               new Handler().postDelayed(new Runnable() {
+                  @Override
+                  public void run() {
 
-               Toast.makeText(getApplicationContext(),"Message not sent and error is " + e.getMessage()
-                       ,Toast.LENGTH_LONG).show();
+                     /*startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                     finish();*/
+
+                  }
+               },0);
 
             }
 
          }
-      });
-
-      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-      StrictMode.setThreadPolicy(policy);
+      },2000);
 
    }
 }
