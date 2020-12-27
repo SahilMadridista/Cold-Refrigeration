@@ -36,6 +36,19 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_service"
+            android:textSize="17sp"
+            android:id="@+id/no_service_text"
+            android:visibility="gone"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="@color/dark_grey"
+            android:layout_centerInParent="true">
+
+        </TextView>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -29,7 +29,8 @@
     <string name="worker_amo">Cost of worker</string>
     <string name="add_service">Add services</string>
     <string name="cancel">Cancel</string>
-    <string name="Done">Done</string>
+    <string name="done">Done</string>
     <string name="adding" tools:ignore="TypographyEllipsis">Adding service...</string>
+    <string name="no_service">No service added yet</string>
 
 </resources>
