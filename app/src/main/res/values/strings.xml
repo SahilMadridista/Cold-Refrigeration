@@ -14,4 +14,22 @@
 
     <string name="api_key">Hbw0MmUmaQM-5zxhzlaKDvIkbsqSJddq2YfrQEbHTX</string>
 
+
+    // Admin home page
+
+    <string name="my_workers">My workers</string>
+    <string name="services">Services</string>
+    <string name="pending_work">Pending work</string>
+
+
+    // Services activity
+
+    <string name="service_name">Service name</string>
+    <string name="total_price">Total price</string>
+    <string name="worker_amo">Cost of worker</string>
+    <string name="add_service">Add services</string>
+    <string name="cancel">Cancel</string>
+    <string name="Done">Done</string>
+    <string name="adding" tools:ignore="TypographyEllipsis">Adding service...</string>
+
 </resources>

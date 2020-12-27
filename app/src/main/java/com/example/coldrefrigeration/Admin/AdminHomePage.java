@@ -1,9 +1,11 @@
 package com.example.coldrefrigeration.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.coldrefrigeration.R;
@@ -27,6 +29,14 @@ public class AdminHomePage extends AppCompatActivity {
       TextView Name = findViewById(R.id.name_text);
       String full = "Hello! " + name;
       Name.setText(full);
+
+      CardView ServicesCard = findViewById(R.id.services_card);
+      ServicesCard.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+            startActivity(new Intent(getApplicationContext(),ServicesActivity.class));
+         }
+      });
 
    }
 

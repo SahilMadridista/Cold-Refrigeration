@@ -14,6 +14,10 @@
     <style name="btn" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/white</item>
     </style>
+    <style name="green_btn" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/call_green</item>
+    </style>
+
 
     <style name="pb" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/email_red</item>
