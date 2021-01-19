@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.coldrefrigeration.Adapters.ServicesAdapter;
@@ -15,7 +16,6 @@ import com.example.coldrefrigeration.BottomSheets.AddServiceBottomSheet;
 import com.example.coldrefrigeration.Model.Services;
 import com.example.coldrefrigeration.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,7 +34,6 @@ public class ServicesActivity extends AppCompatActivity {
       setContentView(R.layout.activity_services);
 
       TextView NoService = findViewById(R.id.no_service_text);
-
       FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
       CollectionReference collectionReference = firebaseFirestore.collection("Services");
@@ -75,8 +74,7 @@ public class ServicesActivity extends AppCompatActivity {
       recyclerView.setAdapter(servicesAdapter);
       servicesAdapter.startListening();
 
-
-      FloatingActionButton AddServices = findViewById(R.id.add_service_btn);
+      ImageView AddServices = findViewById(R.id.add_service_btn);
       AddServices.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View view) {
@@ -89,4 +87,6 @@ public class ServicesActivity extends AppCompatActivity {
 
 
    }
+
+
 }

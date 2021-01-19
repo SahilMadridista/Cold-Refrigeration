@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/card">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -27,6 +27,7 @@
                 android:fontFamily="@font/lato_medium"
                 android:text="@string/app_name"
                 android:textSize="25sp"
+                android:id="@+id/a"
                 android:textColor="@color/white"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp">
@@ -39,13 +40,25 @@
                 android:fontFamily="@font/lato_regular"
                 android:textSize="20sp"
                 android:id="@+id/name_text"
+                android:layout_below="@id/a"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/white"
                 android:layout_marginStart="10dp">
 
             </TextView>
 
-        </LinearLayout>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_sign_out"
+                android:layout_marginEnd="10dp"
+                android:id="@+id/sign_out_btn"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true">
+
+            </ImageView>
+
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
@@ -61,7 +74,8 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="60dp"
+                android:id="@+id/workers_card"
                 android:layout_marginBottom="2dp">
 
                 <LinearLayout
@@ -71,8 +85,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@drawable/ic_worker"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp">
@@ -94,6 +108,7 @@
                         android:paddingStart="15dp"
                         android:paddingEnd="0dp"
                         android:text="@string/my_workers"
+                        android:textSize="20sp"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/lato_regular"
                         android:textColor="@color/dark_grey">
@@ -106,7 +121,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="60dp"
                 android:id="@+id/services_card"
                 android:layout_marginBottom="2dp">
 
@@ -117,8 +132,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@drawable/ic_services"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp">
@@ -139,6 +154,7 @@
                         android:layout_height="match_parent"
                         android:paddingStart="15dp"
                         android:paddingEnd="0dp"
+                        android:textSize="20sp"
                         android:text="@string/services"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/lato_regular"
@@ -152,7 +168,8 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="60dp"
+                android:id="@+id/assign_worker_card"
                 android:layout_marginBottom="2dp">
 
                 <LinearLayout
@@ -162,8 +179,54 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_assign"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp">
+
+                    </ImageView>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:background="@color/silver"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp">
+
+                    </View>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="0dp"
+                        android:textSize="20sp"
+                        android:text="@string/assign_worker"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/lato_regular"
+                        android:textColor="@color/dark_grey">
+
+                    </TextView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@drawable/ic_pending"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp">
@@ -184,7 +247,102 @@
                         android:layout_height="match_parent"
                         android:paddingStart="15dp"
                         android:paddingEnd="0dp"
+                        android:textSize="20sp"
                         android:text="@string/pending_work"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/lato_regular"
+                        android:textColor="@color/dark_grey">
+
+                    </TextView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/work_history_card"
+                android:layout_marginBottom="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_check"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp">
+
+                    </ImageView>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:background="@color/silver"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp">
+
+                    </View>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="0dp"
+                        android:textSize="20sp"
+                        android:text="@string/work_history"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/lato_regular"
+                        android:textColor="@color/dark_grey">
+
+                    </TextView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/new_worker_card"
+                android:layout_marginBottom="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_add_person"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp">
+
+                    </ImageView>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:background="@color/silver"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp">
+
+                    </View>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="0dp"
+                        android:text="@string/new_worker"
+                        android:textSize="20sp"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/lato_regular"
                         android:textColor="@color/dark_grey">

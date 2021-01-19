@@ -58,7 +58,7 @@ public class AddServiceBottomSheet extends BottomSheetDialogFragment {
             }
 
             AddService.setText(R.string.adding);
-            AddService.setEnabled(false);
+            AddService.setClickable(false);
 
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -77,7 +77,7 @@ public class AddServiceBottomSheet extends BottomSheetDialogFragment {
 
                   Toast.makeText(context,"Service added : " + ServiceName.getText().toString().trim(),Toast.LENGTH_LONG).show();
                   AddService.setText(R.string.done);
-                  AddService.setEnabled(true);
+                  AddService.setClickable(true);
                   ServiceName.setText("");
                   TotalCost.setText("");
                   WorkerCost.setText("");
@@ -89,7 +89,7 @@ public class AddServiceBottomSheet extends BottomSheetDialogFragment {
 
                   Toast.makeText(context,e.getMessage(),Toast.LENGTH_LONG).show();
                   AddService.setText(R.string.done);
-                  AddService.setEnabled(true);
+                  AddService.setClickable(true);
 
                }
             });

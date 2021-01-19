@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ColdRefrigeration">
-        <activity android:name=".Admin.ServicesActivity"></activity>
+        <activity android:name=".AssignWorkerActivity"></activity>
+        <activity android:name=".Worker.WorkerProfileActivity" />
+        <activity android:name=".Admin.AdminProfileActivity" />
+        <activity android:name=".Admin.ServicesActivity" />
         <activity android:name=".Worker.WorkerHomePage" />
         <activity android:name=".Admin.AdminHomePage" />
         <activity android:name=".SignUpActivity" />
@@ -22,8 +25,8 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

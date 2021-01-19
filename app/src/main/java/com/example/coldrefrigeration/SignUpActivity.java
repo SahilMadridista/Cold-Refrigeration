@@ -4,9 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -55,6 +59,19 @@ public class SignUpActivity extends AppCompatActivity {
 
             checkDetails();
 
+         }
+      });
+
+      CheckBox ShowPass = findViewById(R.id.show_pass_check);
+
+      ShowPass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+         @Override
+         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            if (b) {
+               Password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+               Password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
          }
       });
 
@@ -121,6 +138,7 @@ public class SignUpActivity extends AppCompatActivity {
          public void onComplete(@NonNull Task<AuthResult> task) {
 
             if(task.isSuccessful()){
+
                Objects.requireNonNull(firebaseAuth.getCurrentUser()).sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                   @Override
                   public void onComplete(@NonNull Task<Void> task) {

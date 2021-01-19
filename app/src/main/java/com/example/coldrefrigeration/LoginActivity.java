@@ -2,13 +2,16 @@ package com.example.coldrefrigeration;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -68,6 +71,19 @@ public class LoginActivity extends AppCompatActivity {
          @Override
          public void onClick(View view) {
             startActivity(new Intent(getApplicationContext(),SignUpActivity.class));
+         }
+      });
+
+      CheckBox ShowPass = findViewById(R.id.show_pass_check);
+
+      ShowPass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+         @Override
+         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            if (b) {
+               PasswordET.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+               PasswordET.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
          }
       });
 
@@ -145,9 +161,10 @@ public class LoginActivity extends AppCompatActivity {
             String activation = documentSnapshot.getString("activation");
             String phone = documentSnapshot.getString("phone");
             String email = documentSnapshot.getString("email");
+            String security = String.valueOf(documentSnapshot.get("security"));
             assert designation != null;
             assert activation != null;
-            openActivity(designation,name,activation,phone,email);
+            openActivity(designation,name,activation,phone,email,security);
 
          }
 
@@ -161,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
 
    }
 
-   private void openActivity(String designation, String name, String activation, String phone, String email) {
+   private void openActivity(String designation, String name, String activation, String phone, String email, String security) {
 
       if(activation.equals("no")){
          Toast.makeText(getApplicationContext(),"Please ask the admin to activate your account first."
@@ -202,6 +219,8 @@ public class LoginActivity extends AppCompatActivity {
          i.putExtra("activation",activation);
          i.putExtra("email",email);
          i.putExtra("phone",phone);
+         i.putExtra("security",security);
+
          startActivity(i);
          finish();
 

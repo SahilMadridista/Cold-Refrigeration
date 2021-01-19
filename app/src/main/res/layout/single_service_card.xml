@@ -1,84 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.cardview.widget.CardView
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:layout_marginBottom="2dp">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/service_name"
-        android:fontFamily="@font/lato_bold"
-        android:textSize="25sp"
-        android:layout_toStartOf="@id/delete_service"
-        android:id="@+id/service_name_text"
-        android:textColor="@color/dark_grey">
-    </TextView>
+        android:background="@color/white"
+        android:padding="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/service_name_text"
-        android:text="@string/total_price"
-        android:textSize="17sp"
-        android:id="@+id/total_amount_head"
-        android:textColor="@color/dark_grey"
-        android:fontFamily="@font/lato_medium"
-        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/service_name"
+            android:fontFamily="@font/lato_bold"
+            android:textSize="25sp"
+            android:layout_toStartOf="@id/delete_service"
+            android:id="@+id/service_name_text"
+            android:textColor="@color/dark_grey">
+        </TextView>
 
-    </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/service_name_text"
+            android:text="@string/total_price"
+            android:textSize="17sp"
+            android:id="@+id/total_amount_head"
+            android:textColor="@color/dark_grey"
+            android:fontFamily="@font/lato_medium"
+            android:layout_marginTop="5dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/service_name_text"
-        android:textSize="17sp"
-        android:layout_toEndOf="@id/total_amount_head"
-        android:id="@+id/total_amount_text"
-        android:textColor="@color/dark_grey"
-        android:fontFamily="@font/lato_regular"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp">
+        </TextView>
 
-    </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/service_name_text"
+            android:textSize="17sp"
+            android:layout_toEndOf="@id/total_amount_head"
+            android:id="@+id/total_amount_text"
+            android:textColor="@color/dark_grey"
+            android:fontFamily="@font/lato_regular"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/total_amount_head"
-        android:text="@string/worker_amo"
-        android:textSize="17sp"
-        android:id="@+id/worker_amount_head"
-        android:textColor="@color/dark_grey"
-        android:fontFamily="@font/lato_medium"
-        android:layout_marginTop="5dp">
+        </TextView>
 
-    </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/total_amount_head"
+            android:text="@string/worker_amo"
+            android:textSize="17sp"
+            android:id="@+id/worker_amount_head"
+            android:textColor="@color/dark_grey"
+            android:fontFamily="@font/lato_medium"
+            android:layout_marginTop="5dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/total_amount_head"
-        android:textSize="17sp"
-        android:layout_toEndOf="@id/worker_amount_head"
-        android:id="@+id/worker_amount_text"
-        android:textColor="@color/dark_grey"
-        android:fontFamily="@font/lato_regular"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp">
+        </TextView>
 
-    </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/total_amount_head"
+            android:textSize="17sp"
+            android:layout_toEndOf="@id/worker_amount_head"
+            android:id="@+id/worker_amount_text"
+            android:textColor="@color/dark_grey"
+            android:fontFamily="@font/lato_regular"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp">
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/delete_service"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_cancel">
+        </TextView>
 
-    </ImageView>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/delete_service"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_cancel">
 
-</RelativeLayout>
+        </ImageView>
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

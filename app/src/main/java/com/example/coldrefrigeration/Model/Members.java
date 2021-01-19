@@ -8,18 +8,20 @@ public class Members {
    public String designation;
    public String activation;
    public String uid;
+   public int security;
 
-   public Members(){
+   public Members() {
 
    }
 
-   public Members(String name, String phone, String email, String designation, String activation, String uid) {
+   public Members(String name, String phone, String email, String designation, String activation, String uid, int security) {
       this.name = name;
       this.phone = phone;
       this.email = email;
       this.designation = designation;
       this.activation = activation;
       this.uid = uid;
+      this.security = security;
    }
 
    public String getName() {
@@ -45,4 +47,9 @@ public class Members {
    public String getUid() {
       return uid;
    }
+
+   public int getSecurity() {
+      return security;
+   }
 }
+

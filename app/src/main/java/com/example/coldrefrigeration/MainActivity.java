@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
                      String activation = documentSnapshot.getString("activation");
                      String phone = documentSnapshot.getString("phone");
                      String email = documentSnapshot.getString("email");
+                     String security = String.valueOf(documentSnapshot.get("security"));
 
                      Intent i = new Intent(getApplicationContext(), WorkerHomePage.class);
                      i.putExtra("name",name);
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                      i.putExtra("activation",activation);
                      i.putExtra("email",email);
                      i.putExtra("phone",phone);
+                     i.putExtra("security",security);
                      startActivity(i);
                      finish();
 
@@ -130,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
                   @Override
                   public void run() {
 
-                     /*startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-                     finish();*/
+                     startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                     finish();
 
                   }
                },0);
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
          }
-      },2000);
+      },1000);
 
    }
 }
