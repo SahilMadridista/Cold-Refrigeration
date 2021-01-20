@@ -1,7 +1,9 @@
 package com.example.coldrefrigeration.Adapters;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,16 +99,63 @@ public class AssignWorkerAdapter extends FirestoreRecyclerAdapter<Bookings, Assi
                      }
                   });
 
-
-
                }
             });
+
+         }
+      });
+
+
+      holder.DeleteBooking.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+
+            final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+            DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
+
+            String id = snapshot.getId();
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+            builder.setMessage("Do you really want to delete this booking ?").setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                       @Override
+                       public void onClick(final DialogInterface dialogInterface, int i) {
+
+                          firestore.collection("Bookings").document(id)
+                                  .delete()
+                                  .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                     @Override
+                                     public void onSuccess(Void aVoid) {
+                                        dialogInterface.cancel();
+                                        Toast.makeText(context,"Booking deleted successfully.",Toast.LENGTH_LONG).show();
+
+                                     }
+                                  }).addOnFailureListener(new OnFailureListener() {
+                             @Override
+                             public void onFailure(@NonNull Exception e) {
+                                dialogInterface.cancel();
+                                Toast.makeText(context,e.getMessage(),Toast.LENGTH_LONG).show();
+                             }
+                          });
+
+                       }
+                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+               @Override
+               public void onClick(DialogInterface dialogInterface, int i) {
+                  dialogInterface.cancel();
+               }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
 
 
 
          }
       });
-
 
 
    }
@@ -124,7 +173,7 @@ public class AssignWorkerAdapter extends FirestoreRecyclerAdapter<Bookings, Assi
 
       TextView Name, ServiceName, Address;
       Spinner WorkerSpinner;
-      Button AssignButton;
+      Button AssignButton, DeleteBooking;
 
       public AssignWorkerViewHolder(@NonNull View itemView) {
          super(itemView);
@@ -134,6 +183,8 @@ public class AssignWorkerAdapter extends FirestoreRecyclerAdapter<Bookings, Assi
          Address = itemView.findViewById(R.id.address_text);
          WorkerSpinner = itemView.findViewById(R.id.worker_spinner);
          AssignButton = itemView.findViewById(R.id.assign_btn);
+         DeleteBooking = itemView.findViewById(R.id.delete_booking);
+
 
          FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -153,6 +204,7 @@ public class AssignWorkerAdapter extends FirestoreRecyclerAdapter<Bookings, Assi
                                R.layout.spinner_item_without_padding, worker_spinner);
                adapter.setDropDownViewResource( R.layout.spinner_item);
                WorkerSpinner.setAdapter(adapter);
+               AssignButton.setEnabled(true);
 
             }
          });

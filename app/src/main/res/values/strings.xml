@@ -67,6 +67,17 @@
     <string name="address">Address</string>
     <string name="assign">Assign</string>
     <string name="no_data_found">No data found</string>
+    <string name="assign_worker_new_booking">Assign worker to new bookings</string>
 
+    <string name="no_new_bookings">No bookings left to assign worker.</string>
+
+    <string-array name="loading">
+        <item tools:ignore="TypographyEllipsis">Loading...</item>
+    </string-array>
+
+
+    // Pending bookings
+
+    <string name="delete">Delete booking</string>
 
 </resources>

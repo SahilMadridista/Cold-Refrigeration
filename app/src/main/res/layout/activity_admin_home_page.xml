@@ -201,8 +201,8 @@
                         android:layout_height="match_parent"
                         android:paddingStart="15dp"
                         android:paddingEnd="0dp"
-                        android:textSize="20sp"
-                        android:text="@string/assign_worker"
+                        android:textSize="18sp"
+                        android:text="@string/assign_worker_new_booking"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/lato_regular"
                         android:textColor="@color/dark_grey">
@@ -216,6 +216,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:id="@+id/pending_card"
                 android:layout_marginBottom="2dp">
 
                 <LinearLayout

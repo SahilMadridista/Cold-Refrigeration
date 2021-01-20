@@ -19,6 +19,7 @@ import com.example.coldrefrigeration.BottomSheets.NewWorkerBottomSheet;
 import com.example.coldrefrigeration.BottomSheets.WorkersBottomSheet;
 import com.example.coldrefrigeration.Consts.SharedPrefConsts;
 import com.example.coldrefrigeration.LoginActivity;
+import com.example.coldrefrigeration.PendingWorkActivity;
 import com.example.coldrefrigeration.R;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -92,6 +93,14 @@ public class AdminHomePage extends AppCompatActivity {
          @Override
          public void onClick(View view) {
             startActivity(new Intent(getApplicationContext(), AssignWorkerActivity.class));
+         }
+      });
+
+      CardView PendingWork = findViewById(R.id.pending_card);
+      PendingWork.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+            startActivity(new Intent(getApplicationContext(), PendingWorkActivity.class));
          }
       });
 

@@ -54,6 +54,37 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:src="@drawable/ic_phone"
+                android:id="@+id/phone_icon"
+                android:layout_marginStart="5dp"
+                android:layout_centerVertical="true">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/phone_icon"
+                android:text="@string/type_phone"
+                android:id="@+id/customer_phone_text"
+                android:gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/lato_medium"
+                android:textColor="@color/dark_grey">
+
+            </TextView>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/ic_work"
                 android:id="@+id/work_icon"
                 android:layout_marginStart="5dp"
@@ -108,7 +139,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="40dp"
+            android:background="@color/white">
 
             <ImageView
                 android:layout_width="30dp"
@@ -120,29 +152,20 @@
 
             </ImageView>
 
-            <Spinner
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
-                android:layout_marginStart="10dp"
                 android:layout_toEndOf="@id/worker_icon"
-                android:id="@+id/worker_spinner">
+                android:text="@string/worker_name"
+                android:id="@+id/worker_name_text"
+                android:gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/lato_medium"
+                android:textColor="@color/dark_grey">
 
-            </Spinner>
+            </TextView>
 
         </RelativeLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/assign"
-            android:enabled="false"
-            android:fontFamily="@font/lato_bold"
-            android:id="@+id/assign_btn"
-            android:textColor="@color/white"
-            android:textAllCaps="false">
-
-        </Button>
 
         <Button
             android:layout_width="match_parent"
@@ -155,6 +178,7 @@
             android:textAllCaps="false">
 
         </Button>
+
 
     </LinearLayout>
 
