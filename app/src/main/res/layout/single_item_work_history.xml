@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_name"
+                android:id="@+id/name_icon"
+                android:layout_marginStart="5dp"
+                android:layout_centerVertical="true">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/name_icon"
+                android:text="@string/type_name"
+                android:id="@+id/customer_name_text"
+                android:gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/lato_medium"
+                android:textColor="@color/dark_grey">
+
+            </TextView>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_phone"
+                android:id="@+id/phone_icon"
+                android:layout_marginStart="5dp"
+                android:layout_centerVertical="true">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/phone_icon"
+                android:text="@string/type_phone"
+                android:id="@+id/customer_phone_text"
+                android:gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/lato_medium"
+                android:textColor="@color/dark_grey">
+
+            </TextView>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_work"
+                android:id="@+id/work_icon"
+                android:layout_marginStart="5dp"
+                android:layout_centerVertical="true">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/work_icon"
+                android:text="@string/pending_work"
+                android:id="@+id/service_name_text"
+                android:gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/lato_medium"
+                android:textColor="@color/dark_grey">
+
+            </TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_location"
+                android:id="@+id/address_icon"
+                android:layout_marginStart="5dp"
+                android:layout_centerVertical="true">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/address_icon"
+                android:text="@string/address"
+                android:id="@+id/address_text"
+                android:gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/lato_medium"
+                android:textColor="@color/dark_grey">
+
+            </TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_worker"
+                android:id="@+id/worker_icon"
+                android:layout_marginStart="5dp"
+                android:layout_centerVertical="true">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/worker_icon"
+                android:text="@string/worker_name"
+                android:id="@+id/worker_name_text"
+                android:gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/lato_medium"
+                android:textColor="@color/dark_grey">
+
+            </TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_calender"
+                android:id="@+id/calender_icon"
+                android:layout_marginStart="5dp"
+                android:layout_centerVertical="true">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/calender_icon"
+                android:text="@string/date"
+                android:id="@+id/date_text"
+                android:gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/lato_medium"
+                android:textColor="@color/dark_grey">
+
+            </TextView>
+
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/red_btn"
+            android:id="@+id/delete_booking"
+            android:textColor="@color/white"
+            android:fontFamily="@font/lato_medium"
+            android:text="@string/delete"
+            android:textAllCaps="false">
+
+        </Button>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

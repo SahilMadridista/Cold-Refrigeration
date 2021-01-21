@@ -71,13 +71,19 @@
 
     <string name="no_new_bookings">No bookings left to assign worker.</string>
 
+    <string name="delete">Delete booking</string>
+
+
+    // Pending bookings
+
     <string-array name="loading">
         <item tools:ignore="TypographyEllipsis">Loading...</item>
     </string-array>
 
 
-    // Pending bookings
+    // Work history
 
-    <string name="delete">Delete booking</string>
+    <string name="no_work_his">No work history found right now.</string>
+    <string name="date">Date</string>
 
 </resources>

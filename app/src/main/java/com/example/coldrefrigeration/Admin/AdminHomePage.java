@@ -21,6 +21,7 @@ import com.example.coldrefrigeration.Consts.SharedPrefConsts;
 import com.example.coldrefrigeration.LoginActivity;
 import com.example.coldrefrigeration.PendingWorkActivity;
 import com.example.coldrefrigeration.R;
+import com.example.coldrefrigeration.WorkHistoryActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminHomePage extends AppCompatActivity {
@@ -101,6 +102,14 @@ public class AdminHomePage extends AppCompatActivity {
          @Override
          public void onClick(View view) {
             startActivity(new Intent(getApplicationContext(), PendingWorkActivity.class));
+         }
+      });
+
+      CardView WorkHistoryCard = findViewById(R.id.work_history_card);
+      WorkHistoryCard.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+            startActivity(new Intent(getApplicationContext(), WorkHistoryActivity.class));
          }
       });
 
