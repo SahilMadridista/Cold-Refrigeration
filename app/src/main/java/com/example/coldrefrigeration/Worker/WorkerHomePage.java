@@ -1,8 +1,10 @@
 package com.example.coldrefrigeration.Worker;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,16 +17,28 @@ import com.example.coldrefrigeration.Admin.AdminProfileActivity;
 import com.example.coldrefrigeration.Consts.SharedPrefConsts;
 import com.example.coldrefrigeration.LoginActivity;
 import com.example.coldrefrigeration.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class WorkerHomePage extends AppCompatActivity {
 
    String name, designation, activation, phone, email, security;
+   CardView PendingWork;
+   TextView AlertText;
+   TextView Wallet;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_worker_home_page);
+
+      PendingWork = findViewById(R.id.pending_work_card);
+      CardView WorkHistoryCard = findViewById(R.id.work_history_card);
 
       Intent i = getIntent();
       name = i.getStringExtra("name");
@@ -38,19 +52,18 @@ public class WorkerHomePage extends AppCompatActivity {
       String full = "Hello! " + name;
       Name.setText(full);
 
-      TextView Wallet = findViewById(R.id.wallet_amount);
+      Wallet = findViewById(R.id.wallet_amount);
       Wallet.setText(security);
 
-      TextView MyWork = findViewById(R.id.b);
-      TextView AlertText = findViewById(R.id.alert_text);
+      AlertText = findViewById(R.id.alert_text);
 
-      if(Integer.parseInt(security) < 2000){
+      /*if(Integer.parseInt(security) < 2000){
          AlertText.setVisibility(View.VISIBLE);
-         MyWork.setVisibility(View.GONE);
+         PendingWork.setVisibility(View.GONE);
       }
       else{
-         setUpRecyclerView(name);
-      }
+         Toast.makeText(getApplicationContext(),"Your account is activated currently.",Toast.LENGTH_LONG).show();
+      }*/
 
       ImageView SignOutButton = findViewById(R.id.sign_out_btn);
       SignOutButton.setOnClickListener(new View.OnClickListener() {
@@ -88,12 +101,70 @@ public class WorkerHomePage extends AppCompatActivity {
          }
       });
 
+      PendingWork.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+
+            Intent i = new Intent(getApplicationContext(),WorkerPendingWorkActivity.class);
+            i.putExtra("email",email);
+            startActivity(i);
+
+         }
+      });
+
+      WorkHistoryCard.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+
+            Intent i = new Intent(getApplicationContext(),WorkerWorkHistory.class);
+            i.putExtra("email",email);
+            startActivity(i);
+
+         }
+      });
 
    }
 
-   private void setUpRecyclerView(String name) {
 
-      Toast.makeText(getApplicationContext(),"Your account is activated currently.",Toast.LENGTH_LONG).show();
+   @Override
+   protected void onStart() {
+      super.onStart();
 
+      ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
+      progressDialog.setCancelable(false);
+      progressDialog.setMessage("Loading details...");
+
+      FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+
+      firebaseFirestore.collection("Members").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+              .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+         @Override
+         public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+            String security = String.valueOf(documentSnapshot.get("security"));
+            Wallet.setText(security);
+
+            if(Integer.parseInt(security) < 2000){
+               AlertText.setVisibility(View.VISIBLE);
+               PendingWork.setVisibility(View.GONE);
+            }
+
+         }
+      }).addOnFailureListener(new OnFailureListener() {
+         @Override
+         public void onFailure(@NonNull Exception e) {
+
+            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+
+         }
+      });
+
+
+   }
+
+   @Override
+   public void onBackPressed() {
+      WorkerHomePage.super.onBackPressed();
+      finish();
    }
 }

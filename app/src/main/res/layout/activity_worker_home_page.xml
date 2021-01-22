@@ -70,7 +70,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="60dp"
             android:id="@+id/workers_card"
             android:layout_marginBottom="2dp">
 
@@ -81,8 +81,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/ic_wallet"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp">
@@ -104,6 +104,7 @@
                     android:paddingStart="15dp"
                     android:paddingEnd="0dp"
                     android:background="@color/white"
+                    android:textSize="20sp"
                     android:id="@+id/wallet_amount"
                     android:text="@string/wallet_amount"
                     android:gravity="center_vertical"
@@ -116,62 +117,121 @@
 
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/works_for_me"
-            android:id="@+id/b"
-            android:fontFamily="@font/lato_bold"
-            android:textColor="@color/dark_grey"
-            android:textSize="17sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/pending_work_card"
+            android:layout_marginBottom="2dp">
 
-        </TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_pending"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp">
+
+                </ImageView>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:background="@color/silver"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp">
+
+                </View>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="0dp"
+                    android:background="@color/white"
+                    android:textSize="20sp"
+                    android:text="@string/pending_work"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/lato_medium"
+                    android:textColor="@color/dark_grey">
+
+                </TextView>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/work_history_card"
+            android:layout_marginBottom="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_check"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp">
+
+                </ImageView>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:background="@color/silver"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp">
+
+                </View>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="0dp"
+                    android:background="@color/white"
+                    android:textSize="20sp"
+                    android:text="@string/my_work"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/lato_medium"
+                    android:textColor="@color/dark_grey">
+
+                </TextView>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_marginTop="50dp"
+                android:visibility="gone"
                 android:fontFamily="@font/lato_medium"
                 android:textColor="@color/dark_grey"
                 android:text="@string/below_amount"
                 android:gravity="center"
                 android:padding="10dp"
-                android:visibility="gone"
                 android:id="@+id/alert_text"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp">
 
             </TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/lato_medium"
-                android:textColor="@color/dark_grey"
-                android:text="@string/no_work_till_now"
-                android:visibility="gone"
-                android:gravity="center"
-                android:padding="10dp"
-                android:id="@+id/no_work_till_now"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp">
-
-            </TextView>
-
 
 
         </RelativeLayout>

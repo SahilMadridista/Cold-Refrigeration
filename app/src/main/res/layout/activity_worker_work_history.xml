@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".WorkHistoryActivity">
+    tools:context=".Worker.WorkerWorkHistory">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -37,11 +37,19 @@
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/work_history_r_view"
+        android:layout_below="@id/head_card">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/head_card"
-        android:id="@+id/loading_animation"
+        android:id="@+id/loading_animation_2"
         app:lottie_fileName="loading.json"
         app:lottie_autoPlay="true"
         app:lottie_loop="true">
@@ -52,20 +60,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/no_work_his"
+        android:fontFamily="@font/lato_medium"
+        android:textColor="@color/dark_grey"
+        android:text="@string/no_his"
         android:visibility="gone"
+        android:gravity="center"
+        android:padding="10dp"
         android:id="@+id/empty_text"
-        android:fontFamily="@font/lato_regular"
-        android:textColor="@color/dark_grey">
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp">
 
     </TextView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/head_card"
-        android:id="@+id/pending_work_r_view">
-
-    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

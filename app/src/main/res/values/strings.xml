@@ -55,7 +55,7 @@
     <string name="works_for_me">My work</string>
     <string name="below_amount">Your wallet amount is below the minimum security amount.
         You can not access the app when the amount is below minimum amount.</string>
-    <string name="no_work_till_now">No work till now for you.</string>
+    <string name="no_work_till_now">No work available for you yet.</string>
 
     // Admin profile
 
@@ -76,14 +76,28 @@
 
     // Pending bookings
 
-    <string-array name="loading">
-        <item tools:ignore="TypographyEllipsis">Loading...</item>
-    </string-array>
+    <string name="no_work_his">No work history found right now.</string>
 
 
     // Work history
 
-    <string name="no_work_his">No work history found right now.</string>
     <string name="date">Date</string>
+    <string name="my_work">My work history</string>
+
+
+    // Worker
+
+    <string name="not_avai">I am not available</string>
+    <string name="comp">Work completed</string>
+    <string name="no_his">No history found of your work.</string>
+
+
+
+
+
+
+    <string-array name="loading">
+        <item tools:ignore="TypographyEllipsis">Loading...</item>
+    </string-array>
 
 </resources>

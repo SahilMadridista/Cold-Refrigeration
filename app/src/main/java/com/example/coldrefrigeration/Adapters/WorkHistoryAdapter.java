@@ -96,7 +96,7 @@ public class WorkHistoryAdapter extends FirestoreRecyclerAdapter<Bookings, WorkH
    @NonNull
    @Override
    public WorkHistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_item_work_history,
+      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_worker_work_history,
               parent, false);
       context = v.getContext();
       return new WorkHistoryViewHolder(v);
