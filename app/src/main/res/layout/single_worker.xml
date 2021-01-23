@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:layout_marginBottom="2dp">
+    android:layout_margin="2dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,6 +38,7 @@
 
         </TextView>
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,9 +64,36 @@
 
         </TextView>
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/security_amount_head"
+            android:id="@+id/more_security_et"
+            android:background="@color/white"
+            android:paddingTop="10dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            android:hint="@string/add_more"
+            android:fontFamily="@font/lato_regular"
+            android:inputType="number"
+            android:digits="0123456789">
+
+        </EditText>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/green_btn"
+            android:text="@string/done"
+            android:id="@+id/done_bttn"
+            android:textAllCaps="false"
+            android:layout_below="@id/security_amount_head"
+            android:layout_toEndOf="@id/more_security_et"
+            android:layout_marginStart="10dp">
+
+        </Button>
+
     </RelativeLayout>
-
-
-
 
 </androidx.cardview.widget.CardView>
