@@ -14,8 +14,6 @@
         <activity android:name=".WorkHistoryActivity" />
         <activity android:name=".PendingWorkActivity" />
         <activity android:name=".AssignWorkerActivity" />
-        <activity android:name=".Worker.WorkerProfileActivity" />
-        <activity android:name=".Admin.AdminProfileActivity" />
         <activity android:name=".Admin.ServicesActivity" />
         <activity android:name=".Worker.WorkerHomePage" />
         <activity android:name=".Admin.AdminHomePage" />

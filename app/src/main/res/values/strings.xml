@@ -92,10 +92,7 @@
     <string name="comp">Work completed</string>
     <string name="no_his">No history found of your work.</string>
 
-
-
-
-
+    <string name="API_KEY">20otlE1ceI8DYKWzmuMvxPwkUSfOs6RB7T9FpLdJCqnhQH4A5gpAu1SvIabJ3C6QDB9j5U8grwLkKnli</string>
 
     <string-array name="loading">
         <item tools:ignore="TypographyEllipsis">Loading...</item>

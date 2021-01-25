@@ -66,6 +66,7 @@ public class WorkersAdapter extends FirestoreRecyclerAdapter<Members, WorkersAda
 
                   progressDialog.dismiss();
                   Toast.makeText(context,"Amount updated.",Toast.LENGTH_LONG).show();
+                  holder.SecurityET.setText("");
 
                }
             }).addOnFailureListener(new OnFailureListener() {

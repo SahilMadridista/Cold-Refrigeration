@@ -13,17 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.coldrefrigeration.Admin.AdminProfileActivity;
 import com.example.coldrefrigeration.Consts.SharedPrefConsts;
 import com.example.coldrefrigeration.LoginActivity;
 import com.example.coldrefrigeration.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 public class WorkerHomePage extends AppCompatActivity {
 
@@ -84,22 +81,6 @@ public class WorkerHomePage extends AppCompatActivity {
          }
       });
 
-      CardView ProfileCard = findViewById(R.id.card);
-      ProfileCard.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View view) {
-
-            Intent intent = new Intent(getApplicationContext(), WorkerProfileActivity.class);
-
-            intent.putExtra("name",name);
-            intent.putExtra("phone",phone);
-            intent.putExtra("email",email);
-
-            startActivity(intent);
-
-
-         }
-      });
 
       PendingWork.setOnClickListener(new View.OnClickListener() {
          @Override

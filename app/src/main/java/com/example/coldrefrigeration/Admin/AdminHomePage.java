@@ -53,23 +53,6 @@ public class AdminHomePage extends AppCompatActivity {
          }
       });
 
-      CardView ProfileCard = findViewById(R.id.card);
-      ProfileCard.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View view) {
-
-            Intent intent = new Intent(getApplicationContext(),AdminProfileActivity.class);
-
-            intent.putExtra("name",name);
-            intent.putExtra("phone",phone);
-            intent.putExtra("email",email);
-
-            startActivity(intent);
-
-
-         }
-      });
-
 
       CardView NewWorker = findViewById(R.id.new_worker_card);
       NewWorker.setOnClickListener(new View.OnClickListener() {
