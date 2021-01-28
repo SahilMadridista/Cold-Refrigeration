@@ -54,13 +54,13 @@ public class WorkerHomePage extends AppCompatActivity {
 
       AlertText = findViewById(R.id.alert_text);
 
-      /*if(Integer.parseInt(security) < 2000){
+      if(Integer.parseInt(security) < 2000){
          AlertText.setVisibility(View.VISIBLE);
          PendingWork.setVisibility(View.GONE);
       }
       else{
          Toast.makeText(getApplicationContext(),"Your account is activated currently.",Toast.LENGTH_LONG).show();
-      }*/
+      }
 
       ImageView SignOutButton = findViewById(R.id.sign_out_btn);
       SignOutButton.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +107,7 @@ public class WorkerHomePage extends AppCompatActivity {
    }
 
 
-   @Override
+   /*@Override
    protected void onStart() {
       super.onStart();
 
@@ -141,7 +141,7 @@ public class WorkerHomePage extends AppCompatActivity {
       });
 
 
-   }
+   }*/
 
    @Override
    public void onBackPressed() {

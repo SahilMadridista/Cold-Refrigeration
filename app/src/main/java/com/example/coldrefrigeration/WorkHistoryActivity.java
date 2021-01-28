@@ -41,8 +41,7 @@ public class WorkHistoryActivity extends AppCompatActivity {
       FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
       CollectionReference collectionReference = firebaseFirestore.collection("Bookings");
-      Query query = collectionReference.whereEqualTo("work_status","done")
-              .orderBy("booking_time", Query.Direction.DESCENDING);
+      Query query = collectionReference.whereEqualTo("work_status","done");
 
       FirestoreRecyclerOptions<Bookings> options = new FirestoreRecyclerOptions.Builder<Bookings>()
               .setQuery(query, Bookings.class)

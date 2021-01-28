@@ -16,6 +16,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.coldrefrigeration.Model.Bookings;
 import com.example.coldrefrigeration.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -28,6 +33,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -86,7 +97,15 @@ public class AssignWorkerAdapter extends FirestoreRecyclerAdapter<Bookings, Assi
                              public void onSuccess(Void aVoid) {
 
                                 Toast.makeText(context,"Worker allotted successfully.",Toast.LENGTH_LONG).show();
+
+                                try {
+                                   sendSMS(phone);
+                                } catch (UnsupportedEncodingException e) {
+                                   e.printStackTrace();
+                                }
+
                                 progressDialog.dismiss();
+
 
                              }
                           }).addOnFailureListener(new OnFailureListener() {
@@ -152,11 +171,58 @@ public class AssignWorkerAdapter extends FirestoreRecyclerAdapter<Bookings, Assi
             alert.show();
 
 
+         }
+      });
 
+
+   }
+
+   private void sendSMS(String phone) throws UnsupportedEncodingException {
+
+      String apiKey = "20otlE1ceI8DYKWzmuMvxPwkUSfOs6RB7T9FpLdJCqnhQH4A5gpAu1SvIabJ3C6QDB9j5U8grwLkKnli";
+      String sendId = "FSTSMS";
+
+      String message = "You have been assigned a work. Please look into it and provide the best service.";
+
+      //important step...
+      message = URLEncoder.encode(message, "UTF-8");
+      String language = "english";
+
+      String route = "p";
+
+      String myUrl = "https://www.fast2sms.com/dev/bulk?authorization=" + apiKey + "&sender_id=" + sendId + "&message=" + message + "&language=" + language + "&route=" + route + "&numbers=" + phone;
+
+      StringRequest requestSms = new StringRequest(myUrl, new Response.Listener<String>() {
+         @Override
+         public void onResponse(String response) {
+
+            JSONObject object = null;
+
+            try {
+
+               object = new JSONObject(response);
+               String ret = object.getString("return");
+               String reqId = object.getString("request_id");
+               JSONArray dataArray = object.getJSONArray("message");
+               String res = dataArray.getString(0);
+
+            } catch (JSONException e) {
+               e.printStackTrace();
+
+            }
+
+         }
+      }, new Response.ErrorListener() {
+         @Override
+         public void onErrorResponse(VolleyError volleyError) {
+
+            Toast.makeText(context, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
 
          }
       });
 
+      RequestQueue rQueue = Volley.newRequestQueue(context);
+      rQueue.add(requestSms);
 
    }
 

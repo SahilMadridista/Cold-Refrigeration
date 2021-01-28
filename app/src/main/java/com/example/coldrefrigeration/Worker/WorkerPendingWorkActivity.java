@@ -87,12 +87,4 @@ public class WorkerPendingWorkActivity extends AppCompatActivity {
 
    }
 
-   @Override
-   public void onBackPressed() {
-      super.onBackPressed();
-
-      finish();
-      startActivity(new Intent(getApplicationContext(),WorkerHomePage.class));
-
-   }
 }
