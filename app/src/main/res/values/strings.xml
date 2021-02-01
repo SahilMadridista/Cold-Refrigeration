@@ -57,6 +57,7 @@
     <string name="below_amount">Your wallet amount is below the minimum security amount.
         You can not access the app when the amount is below minimum amount.</string>
     <string name="no_work_till_now">No work available for you yet.</string>
+    <string name="active_status">Active status</string>
 
     // Admin profile
 
@@ -73,6 +74,10 @@
     <string name="no_new_bookings">No bookings left to assign worker.</string>
 
     <string name="delete">Delete booking</string>
+
+    <string-array name="no_active_worker">
+        <item>No worker active currently</item>
+    </string-array>
 
 
     // Pending bookings

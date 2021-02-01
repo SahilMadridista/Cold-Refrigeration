@@ -71,20 +71,62 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:id="@+id/active_status_card"
+            android:layout_marginBottom="2dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingEnd="15dp"
+                    android:paddingStart="15dp"
+                    android:background="@color/white"
+                    android:textSize="20sp"
+                    android:id="@+id/active_status_text"
+                    android:text="@string/active_status"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/lato_medium"
+                    android:textColor="@color/dark_grey">
+
+                </TextView>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/active_status_check"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="15dp">
+
+                </androidx.appcompat.widget.SwitchCompat>
+
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:id="@+id/workers_card"
             android:layout_marginBottom="2dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
-                android:orientation="horizontal">
+                android:background="@color/white">
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_wallet"
-                    android:layout_gravity="center_vertical"
+                    android:id="@+id/i"
+                    android:layout_centerVertical="true"
                     android:layout_marginStart="15dp">
 
                 </ImageView>
@@ -93,16 +135,19 @@
                     android:layout_width="1dp"
                     android:layout_height="40dp"
                     android:background="@color/silver"
-                    android:layout_gravity="center_vertical"
+                    android:layout_toEndOf="@id/i"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/test"
                     android:layout_marginStart="15dp">
 
                 </View>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingStart="15dp"
                     android:paddingEnd="0dp"
+                    android:layout_toEndOf="@id/test"
                     android:background="@color/white"
                     android:textSize="20sp"
                     android:id="@+id/wallet_amount"
@@ -113,7 +158,19 @@
 
                 </TextView>
 
-            </LinearLayout>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_refresh"
+                    android:id="@+id/refresh_btn"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp">
+
+                </ImageView>
+
+
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 

@@ -254,8 +254,10 @@ public class AssignWorkerAdapter extends FirestoreRecyclerAdapter<Bookings, Assi
 
          FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
-         firebaseFirestore.collection("Members").whereEqualTo("designation",
-                 "WORKER").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+         firebaseFirestore.collection("Members")
+                 .whereEqualTo("designation", "WORKER")
+                 .whereEqualTo("active_status","on")
+                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
@@ -265,12 +267,28 @@ public class AssignWorkerAdapter extends FirestoreRecyclerAdapter<Bookings, Assi
                   worker_spinner.add(documentSnapshot.getString("name"));
                }
 
-               ArrayAdapter<String> adapter =
-                       new ArrayAdapter<String>(itemView.getContext(),
-                               R.layout.spinner_item_without_padding, worker_spinner);
-               adapter.setDropDownViewResource( R.layout.spinner_item);
-               WorkerSpinner.setAdapter(adapter);
-               AssignButton.setEnabled(true);
+               if(worker_spinner.isEmpty()){
+
+                  ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(itemView.getContext(),
+                          R.array.no_active_worker, R.layout.spinner_item_without_padding);
+                  adapter.setDropDownViewResource(R.layout.spinner_item);
+                  WorkerSpinner.setAdapter(adapter);
+                  AssignButton.setVisibility(View.GONE);
+
+               }
+
+               else{
+
+                  ArrayAdapter<String> adapter =
+                          new ArrayAdapter<String>(itemView.getContext(),
+                                  R.layout.spinner_item_without_padding, worker_spinner);
+                  adapter.setDropDownViewResource( R.layout.spinner_item);
+                  WorkerSpinner.setAdapter(adapter);
+                  AssignButton.setVisibility(View.VISIBLE);
+                  AssignButton.setEnabled(true);
+
+               }
+
 
             }
          });

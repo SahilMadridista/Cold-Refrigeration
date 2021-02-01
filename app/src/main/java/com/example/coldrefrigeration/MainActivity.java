@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                      String phone = documentSnapshot.getString("phone");
                      String email = documentSnapshot.getString("email");
                      String security = String.valueOf(documentSnapshot.get("security"));
+                     String active_status = String.valueOf(documentSnapshot.get("active_status"));
 
                      Intent i = new Intent(getApplicationContext(), WorkerHomePage.class);
                      i.putExtra("name",name);
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                      i.putExtra("email",email);
                      i.putExtra("phone",phone);
                      i.putExtra("security",security);
+                     i.putExtra("active_status",active_status);
                      startActivity(i);
                      finish();
 

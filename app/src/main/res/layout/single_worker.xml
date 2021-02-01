@@ -98,6 +98,18 @@
 
         </Button>
 
+        <ImageView
+
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_active_on"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/active_status_icon"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true">
+
+        </ImageView>
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

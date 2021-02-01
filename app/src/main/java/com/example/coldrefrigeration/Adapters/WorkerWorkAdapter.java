@@ -21,6 +21,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -62,6 +63,7 @@ public class WorkerWorkAdapter extends FirestoreRecyclerAdapter<Bookings, Worker
 
             DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
             String id = snapshot.getId();
+            int worker_amount = Integer.parseInt(String.valueOf(model.getService_worker_cost()));
 
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -70,30 +72,60 @@ public class WorkerWorkAdapter extends FirestoreRecyclerAdapter<Bookings, Worker
                        @Override
                        public void onClick(final DialogInterface dialogInterface, int i) {
 
+                          String worker_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                          Map<String,Object> remove = new LinkedHashMap<>();
-                          remove.put("work_status","done");
-                          remove.put("booking_complete_date",date);
-
-                          firestore.collection("Bookings").document(id).update(remove)
-                                  .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                     @Override
-                                     public void onSuccess(Void aVoid) {
-
-                                        dialogInterface.cancel();
-                                        Toast.makeText(context,
-                                                "Work completed.",Toast.LENGTH_LONG).show();
-
-                                     }
-                                  }).addOnFailureListener(new OnFailureListener() {
+                          firestore.collection("Members").document(worker_id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                              @Override
-                             public void onFailure(@NonNull Exception e) {
+                             public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                                dialogInterface.cancel();
-                                Toast.makeText(context,e.getMessage(),Toast.LENGTH_LONG).show();
+                                int sec = Integer.parseInt(String.valueOf(documentSnapshot.get("security")));
+
+                                Map<String,Object> remove = new LinkedHashMap<>();
+
+                                remove.put("work_status","done");
+                                remove.put("booking_complete_date",date);
+
+                                firestore.collection("Bookings").document(id).update(remove)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                           @Override
+                                           public void onSuccess(Void aVoid) {
+
+                                              firestore.collection("Members").document(worker_id)
+                                                      .update("security",sec-worker_amount).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                 @Override
+                                                 public void onSuccess(Void aVoid) {
+
+                                                    dialogInterface.cancel();
+                                                    Toast.makeText(context,
+                                                            "Work completed.",Toast.LENGTH_LONG).show();
+
+                                                 }
+                                              }).addOnFailureListener(new OnFailureListener() {
+                                                 @Override
+                                                 public void onFailure(@NonNull Exception e) {
+
+                                                    dialogInterface.cancel();
+                                                    Toast.makeText(context,
+                                                            e.getMessage(),Toast.LENGTH_LONG).show();
+
+                                                 }
+                                              });
+
+                                           }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                   @Override
+                                   public void onFailure(@NonNull Exception e) {
+
+                                      dialogInterface.cancel();
+                                      Toast.makeText(context,e.getMessage(),Toast.LENGTH_LONG).show();
+
+                                   }
+                                });
 
                              }
                           });
+
+
 
                        }
                     }).setNegativeButton("No", new DialogInterface.OnClickListener() {

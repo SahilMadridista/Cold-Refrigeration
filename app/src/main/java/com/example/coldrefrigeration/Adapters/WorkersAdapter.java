@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,12 @@ public class WorkersAdapter extends FirestoreRecyclerAdapter<Members, WorkersAda
       holder.Name.setText(model.getName());
       holder.Phone.setText(model.getPhone());
       holder.SecurityAmountText.setText(String.valueOf(model.getSecurity()));
+
+      if(model.getActive_status().equals("off")){
+         holder.ActiveStatus.setVisibility(View.GONE);
+      }else{
+         holder.ActiveStatus.setVisibility(View.VISIBLE);
+      }
 
       holder.DoneButton.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -100,6 +107,7 @@ public class WorkersAdapter extends FirestoreRecyclerAdapter<Members, WorkersAda
       TextView Name, Phone, SecurityAmountText;
       EditText SecurityET;
       Button DoneButton;
+      ImageView ActiveStatus;
 
       public WorkersViewHolder(@NonNull View itemView) {
          super(itemView);
@@ -109,6 +117,7 @@ public class WorkersAdapter extends FirestoreRecyclerAdapter<Members, WorkersAda
          SecurityAmountText = itemView.findViewById(R.id.security_amount_text);
          SecurityET = itemView.findViewById(R.id.more_security_et);
          DoneButton = itemView.findViewById(R.id.done_bttn);
+         ActiveStatus = itemView.findViewById(R.id.active_status_icon);
 
       }
    }

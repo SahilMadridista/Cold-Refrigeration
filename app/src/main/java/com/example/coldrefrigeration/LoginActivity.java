@@ -162,9 +162,10 @@ public class LoginActivity extends AppCompatActivity {
             String phone = documentSnapshot.getString("phone");
             String email = documentSnapshot.getString("email");
             String security = String.valueOf(documentSnapshot.get("security"));
+            String active_status = String.valueOf(documentSnapshot.get("active_status"));
             assert designation != null;
             assert activation != null;
-            openActivity(designation,name,activation,phone,email,security);
+            openActivity(designation,name,activation,phone,email,security,active_status);
 
          }
 
@@ -178,7 +179,8 @@ public class LoginActivity extends AppCompatActivity {
 
    }
 
-   private void openActivity(String designation, String name, String activation, String phone, String email, String security) {
+   private void openActivity(String designation, String name, String activation, String phone,
+                             String email, String security, String active_status) {
 
       if(activation.equals("no")){
          Toast.makeText(getApplicationContext(),"Please ask the admin to activate your account first."
@@ -220,6 +222,7 @@ public class LoginActivity extends AppCompatActivity {
          i.putExtra("email",email);
          i.putExtra("phone",phone);
          i.putExtra("security",security);
+         i.putExtra("active_status",active_status);
 
          startActivity(i);
          finish();
