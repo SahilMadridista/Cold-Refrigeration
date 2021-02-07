@@ -6,8 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,15 +22,22 @@ import com.example.coldrefrigeration.Model.Members;
 import com.example.coldrefrigeration.Model.Services;
 import com.example.coldrefrigeration.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 public class WorkersBottomSheet extends BottomSheetDialogFragment {
 
@@ -36,48 +47,94 @@ public class WorkersBottomSheet extends BottomSheetDialogFragment {
       final View v = inflater.inflate(R.layout.workers_bottom_sheet, container, false);
       final Context context = v.getContext();
       TextView NoWorker = v.findViewById(R.id.no_worker_text);
+      Spinner AreaSpinner = v.findViewById(R.id.area_spinner);
       FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
-      CollectionReference collectionReference = firebaseFirestore.collection("Members");
-      Query query = collectionReference.whereEqualTo("designation","WORKER");
+      ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(v.getContext(),
+              R.array.loading, R.layout.spinner_item_without_padding);
+      adapter.setDropDownViewResource(R.layout.spinner_item);
+      AreaSpinner.setAdapter(adapter);
 
-      FirestoreRecyclerOptions<Members> options = new FirestoreRecyclerOptions.Builder<Members>()
-              .setQuery(query, Members.class)
-              .build();
 
-      query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+      firebaseFirestore.collection("Members").whereEqualTo("designation","WORKER").get()
+              .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                 @Override
+                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                    ArrayList<String> areas = new ArrayList<>();
+
+                    for(DocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())){
+                       areas.add(documentSnapshot.getString("area"));
+                    }
+
+                    Set<String> set = new HashSet<>(areas);
+                    areas.clear();
+                    areas.addAll(set);
+
+                    ArrayAdapter<String> adapter2 =
+                            new ArrayAdapter<String>(v.getContext(),
+                                    R.layout.spinner_item_without_padding, areas);
+                    adapter2.setDropDownViewResource( R.layout.spinner_item);
+                    AreaSpinner.setAdapter(adapter2);
+
+                 }
+              });
+
+      AreaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
          @Override
-         public void onEvent(@Nullable QuerySnapshot querySnapshot, @Nullable FirebaseFirestoreException error) {
+         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-            if (error != null) {
-               Log.d("TAG", error.getMessage());
-               return;
-            }
+            String area = adapterView.getItemAtPosition(i).toString().trim();
 
-            assert querySnapshot != null;
+            CollectionReference collectionReference = firebaseFirestore.collection("Members");
+            Query query = collectionReference.whereEqualTo("designation","WORKER")
+                    .whereEqualTo("area",area);
 
-            List<Services> list = querySnapshot.toObjects(Services.class);
+            FirestoreRecyclerOptions<Members> options = new FirestoreRecyclerOptions.Builder<Members>()
+                    .setQuery(query, Members.class)
+                    .build();
 
-            if(list.size() == 0){
-               NoWorker.setVisibility(View.VISIBLE);
-            }
+            query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+               @Override
+               public void onEvent(@Nullable QuerySnapshot querySnapshot, @Nullable FirebaseFirestoreException error) {
 
-            if(list.size()!=0){
-               NoWorker.setVisibility(View.GONE);
-            }
+                  if (error != null) {
+                     Log.d("TAG", error.getMessage());
+                     return;
+                  }
+
+                  assert querySnapshot != null;
+
+                  List<Services> list = querySnapshot.toObjects(Services.class);
+
+                  if(list.size() == 0){
+                     NoWorker.setVisibility(View.VISIBLE);
+                  }
+
+                  if(list.size()!=0){
+                     NoWorker.setVisibility(View.GONE);
+                  }
+
+               }
+            });
+
+            RecyclerView recyclerView = v.findViewById(R.id.workers_recyclerview);
+            WorkersAdapter workersAdapter = new WorkersAdapter(options);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.setAdapter(workersAdapter);
+            workersAdapter.startListening();
+
+         }
+
+         @Override
+         public void onNothingSelected(AdapterView<?> adapterView) {
 
          }
       });
 
-      RecyclerView recyclerView = v.findViewById(R.id.workers_recyclerview);
-      WorkersAdapter workersAdapter = new WorkersAdapter(options);
-      recyclerView.setHasFixedSize(true);
-      recyclerView.setLayoutManager(new LinearLayoutManager(context));
-      recyclerView.setAdapter(workersAdapter);
-      workersAdapter.startListening();
-
-
       return v;
+
    }
 
 }

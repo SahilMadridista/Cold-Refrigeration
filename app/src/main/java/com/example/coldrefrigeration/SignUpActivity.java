@@ -176,6 +176,8 @@ public class SignUpActivity extends AppCompatActivity {
       member.phone = Phone.getText().toString().trim();
       member.designation = "";
       member.activation = "no";
+      member.active_status = "off";
+      member.area = "";
       member.uid = uid;
 
       firebaseFirestore.collection("Members").document(Objects.requireNonNull(firebaseAuth.getCurrentUser())

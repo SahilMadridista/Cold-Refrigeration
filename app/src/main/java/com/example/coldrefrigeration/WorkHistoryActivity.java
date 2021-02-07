@@ -67,7 +67,6 @@ public class WorkHistoryActivity extends AppCompatActivity {
 
             if(list.size()!=0){
                Loading.setVisibility(View.GONE);
-               Toast.makeText(getApplicationContext(),"Showing latest booking on top.",Toast.LENGTH_LONG).show();
             }
 
          }

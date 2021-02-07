@@ -18,10 +18,22 @@
 
     </TextView>
 
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/area_spinner"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@id/head"
+        android:layout_marginTop="10dp">
+
+    </Spinner>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/head"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/area_spinner"
         android:id="@+id/workers_recyclerview">
 
     </androidx.recyclerview.widget.RecyclerView>

@@ -49,13 +49,20 @@ public class NewWorkerAdapter extends FirestoreRecyclerAdapter<Members, NewWorke
                return;
             }
 
+            if(holder.Area.getText().toString().isEmpty()){
+               Toast.makeText(context,"Please enter the area of the worker.",Toast.LENGTH_LONG).show();
+               return;
+            }
+
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
             DocumentSnapshot snapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
             String id = snapshot.getId();
 
             Map<String,Object> a = new LinkedHashMap<>();
+
             a.put("activation","yes");
             a.put("designation","WORKER");
+            a.put("area",holder.Area.getText().toString().trim().toUpperCase());
             a.put("security",Integer.parseInt(holder.SecurityAmount.getText().toString()));
 
             firebaseFirestore.collection("Members").document(id)
@@ -91,7 +98,7 @@ public class NewWorkerAdapter extends FirestoreRecyclerAdapter<Members, NewWorke
    static class NewWorkerViewHolder extends RecyclerView.ViewHolder{
 
       TextView Name, Phone;
-      EditText SecurityAmount;
+      EditText SecurityAmount, Area;
       ImageView Approve;
 
       public NewWorkerViewHolder(@NonNull View itemView) {
@@ -100,6 +107,7 @@ public class NewWorkerAdapter extends FirestoreRecyclerAdapter<Members, NewWorke
          Name = itemView.findViewById(R.id.worker_name);
          Phone = itemView.findViewById(R.id.worker_phone);
          SecurityAmount = itemView.findViewById(R.id.security_amount_et);
+         Area = itemView.findViewById(R.id.area_et);
          Approve = itemView.findViewById(R.id.approve_btn);
 
       }

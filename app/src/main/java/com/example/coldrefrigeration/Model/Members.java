@@ -9,14 +9,15 @@ public class Members {
    public String activation;
    public String uid;
    public String active_status;
+   public String area;
    public int security;
 
    public Members() {
 
    }
 
-   public Members(String name, String phone, String email, String designation,
-                  String activation, String uid, String active_status, int security) {
+   public Members(String name, String phone, String email, String designation, String activation,
+                  String uid, String active_status, String area, int security) {
       this.name = name;
       this.phone = phone;
       this.email = email;
@@ -24,6 +25,7 @@ public class Members {
       this.activation = activation;
       this.uid = uid;
       this.active_status = active_status;
+      this.area = area;
       this.security = security;
    }
 
@@ -53,6 +55,10 @@ public class Members {
 
    public String getActive_status() {
       return active_status;
+   }
+
+   public String getArea() {
+      return area;
    }
 
    public int getSecurity() {

@@ -37,6 +37,7 @@ public class WorkersAdapter extends FirestoreRecyclerAdapter<Members, WorkersAda
       holder.Name.setText(model.getName());
       holder.Phone.setText(model.getPhone());
       holder.SecurityAmountText.setText(String.valueOf(model.getSecurity()));
+      holder.Area.setText(model.getArea());
 
       if(model.getActive_status().equals("off")){
          holder.ActiveStatus.setVisibility(View.GONE);
@@ -104,7 +105,7 @@ public class WorkersAdapter extends FirestoreRecyclerAdapter<Members, WorkersAda
 
    static class WorkersViewHolder extends RecyclerView.ViewHolder{
 
-      TextView Name, Phone, SecurityAmountText;
+      TextView Name, Phone, SecurityAmountText, Area;
       EditText SecurityET;
       Button DoneButton;
       ImageView ActiveStatus;
@@ -115,6 +116,7 @@ public class WorkersAdapter extends FirestoreRecyclerAdapter<Members, WorkersAda
          Name = itemView.findViewById(R.id.worker_name_text);
          Phone = itemView.findViewById(R.id.worker_phone_text);
          SecurityAmountText = itemView.findViewById(R.id.security_amount_text);
+         Area = itemView.findViewById(R.id.area_text);
          SecurityET = itemView.findViewById(R.id.more_security_et);
          DoneButton = itemView.findViewById(R.id.done_bttn);
          ActiveStatus = itemView.findViewById(R.id.active_status_icon);

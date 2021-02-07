@@ -43,6 +43,7 @@
     <string name="worker_phone">Worker phone</string>
     <string name="security_amount">Security amount</string>
     <string name="no_new_worker">No new worker request found</string>
+    <string name="area">Area of worker</string>
 
     // Workers BS
 
