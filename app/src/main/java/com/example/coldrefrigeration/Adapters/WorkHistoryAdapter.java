@@ -108,6 +108,7 @@ public class WorkHistoryAdapter extends FirestoreRecyclerAdapter<Bookings, WorkH
       Button DeleteBooking;
 
       public WorkHistoryViewHolder(@NonNull View itemView) {
+
          super(itemView);
 
          Name = itemView.findViewById(R.id.customer_name_text);
@@ -116,7 +117,7 @@ public class WorkHistoryAdapter extends FirestoreRecyclerAdapter<Bookings, WorkH
          WorkerName = itemView.findViewById(R.id.worker_name_text);
          Phone = itemView.findViewById(R.id.customer_phone_text);
          Date = itemView.findViewById(R.id.date_text);
-         DeleteBooking = itemView.findViewById(R.id.delete_booking);
+         DeleteBooking = itemView.findViewById(R.id.delete_history);
 
       }
    }

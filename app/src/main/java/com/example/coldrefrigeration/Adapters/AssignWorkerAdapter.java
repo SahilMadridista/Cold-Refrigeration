@@ -179,8 +179,10 @@ public class AssignWorkerAdapter extends FirestoreRecyclerAdapter<Bookings, Assi
 
    private void sendSMS(String phone) throws UnsupportedEncodingException {
 
-      String apiKey = "20otlE1ceI8DYKWzmuMvxPwkUSfOs6RB7T9FpLdJCqnhQH4A5gpAu1SvIabJ3C6QDB9j5U8grwLkKnli";
+      String apiKey = "vnOaGc8URfFmKbpwdYuEBe76ijNVs3HrMqyk2zI1QX4TJWAtZ5E2I6Wb5HaBomxrCXZ9QTv4qKM3lcRt";
       String sendId = "FSTSMS";
+
+      System.out.println("_________________________________________________________");
 
       String message = "You have been assigned a work. Please look into it and provide the best service.";
 

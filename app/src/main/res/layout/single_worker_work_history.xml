@@ -186,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toEndOf="@id/worker_icon"
-                android:text="@string/date"
+                android:text="@string/worker_name"
                 android:id="@+id/worker_name_text"
                 android:gravity="center_vertical"
                 android:layout_marginStart="10dp"
@@ -196,6 +196,17 @@
             </TextView>
 
         </RelativeLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/red_btn"
+            android:text="@string/delete"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:id="@+id/delete_history">
+
+        </Button>
 
     </LinearLayout>
 
